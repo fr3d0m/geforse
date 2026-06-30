@@ -1,0 +1,19 @@
+body {
+    background-color: aqua;
+    font-family: cursive;
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#ueberschrift {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: blue;
+}
+
+h1 {
+    color: darkblue;
+}
