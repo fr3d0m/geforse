@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Frau Krueger – ein gemütliches Nachbarschaftscafé in Berlin. Kaffee, Frühstück und Mittagessen mit Herzlichkeit serviert." />
+  <title>Frau Krueger – Café Berlin</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="css/styles.css" />
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+
+  <!-- Section: Navigation -->
+  <header class="navigation" id="top" role="banner">
+    <div class="navigation__inhalt bereich">
+      <a class="navigation__logo" href="#top" aria-label="Frau Krueger – zurück nach oben">
+        Frau Krueger
+      </a>
+
+      <button
+        class="navigation__menue-knopf"
+        id="menue-knopf"
+        aria-controls="navigations-links"
+        aria-expanded="false"
+        aria-label="Menü öffnen"
+      >
+        <span class="navigation__strich"></span>
+        <span class="navigation__strich"></span>
+        <span class="navigation__strich"></span>
+      </button>
+
+      <nav class="navigation__links" id="navigations-links" aria-label="Hauptnavigation">
+        <ul class="navigation__liste" role="list">
+          <li class="navigation__punkt"><a class="navigation__link" href="#ueber-uns">Über uns</a></li>
+          <li class="navigation__punkt"><a class="navigation__link" href="#speisekarte">Karte</a></li>
+          <li class="navigation__punkt"><a class="navigation__link" href="#atmosphaere">Atmosphäre</a></li>
+          <li class="navigation__punkt"><a class="navigation__link" href="#kontakt">Kontakt</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- Section: Einstieg (Hero) -->
+    <section class="einstieg" id="einstieg" aria-labelledby="einstieg-titel">
+      <div class="einstieg__inhalt bereich">
+        <p class="einstieg__vortext">Willkommen im</p>
+        <h1 class="einstieg__titel" id="einstieg-titel">Frau Krueger</h1>
+        <p class="einstieg__slogan">Where every cup tells a story.</p>
+        <a class="knopf knopf--primaer" href="#speisekarte">Zur Karte</a>
+      </div>
+    </section>
+
+    <!-- Section: Über uns -->
+    <section class="ueber-uns" id="ueber-uns" aria-labelledby="ueber-uns-titel">
+      <div class="ueber-uns__inhalt bereich">
+        <div class="ueber-uns__text">
+          <h2 class="abschnitts-titel" id="ueber-uns-titel">Unsere Geschichte</h2>
+          <p class="ueber-uns__absatz">
+            Frau Krueger öffnete ihre Türen im Jahr 2014 als kleines Geheimnis der
+            Nachbarschaft — ein Ort, an dem frischer Kaffee, selbstgemachte Marmelade und
+            ein freundliches Lächeln jeden Morgen auf Sie warten. Was als Traum einer
+            leidenschaftlichen Bäckerin begann, ist heute ein fester Bestandteil des
+            Berliner Kiezlebens.
+          </p>
+          <p class="ueber-uns__absatz">
+            Unsere Räume sind bewusst einfach gehalten: Holztische, weiche Lampen,
+            Bücher zum Schmökern. Hier gibt es keinen Lärm, keine Hast — nur den Duft von
+            frisch gemahlenem Kaffee und dem Gefühl, angekommen zu sein. Viele Gäste
+            kommen als Fremde und gehen als Stammgäste.
+          </p>
+          <p class="ueber-uns__absatz">
+            Wir legen großen Wert auf regionale und saisonale Zutaten. Unsere Eier kommen
+            vom Biobauernhof nebenan, unser Brot wird täglich frisch geliefert, und unsere
+            Kaffeemischung wird von einer kleinen Berliner Rösterei speziell für uns
+            kreiert. Qualität schmeckt man.
+          </p>
+        </div>
+        <div class="ueber-uns__bild" aria-label="Gemütliche Caféecke mit Holztisch und Tasse Kaffee" role="img"></div>
+      </div>
+    </section>
+
+    <!-- Section: Speisekarte -->
+    <section class="speisekarte" id="speisekarte" aria-labelledby="speisekarte-titel">
+      <div class="speisekarte__inhalt bereich">
+        <h2 class="abschnitts-titel abschnitts-titel--zentriert" id="speisekarte-titel">Unsere Karte</h2>
+        <p class="speisekarte__einleitung">Alles frisch, alles mit Liebe — täglich wechselnde Tagesgerichte je nach Saison.</p>
+
+        <div class="speisekarte__raster">
+
+          <!-- Kategorie: Kaffee & Getränke -->
+          <div class="speisekarte__kategorie" aria-labelledby="kategorie-getraenke">
+            <h3 class="speisekarte__kategorie-titel" id="kategorie-getraenke">Kaffee &amp; Getränke</h3>
+            <ul class="speisekarte__liste" role="list">
+              <li class="speisekarte__gericht">
+                <div class="speisekarte__gericht-kopf">
+                  <span class="speisekarte__gericht-name">Getränk 1</span>
+                  <span class="speisekarte__gericht-preis" aria-label="Preis folgt">-,- €</span>
+                </div>
+                <p class="speisekarte__gericht-beschreibung">Kurze Beschreibung des Angebots.</p>
+              </li>
+              <li class="speisekarte__gericht">
+                <div class="speisekarte__gericht-kopf">
+                  <span class="speisekarte__gericht-name">Getränk 2</span>
+                  <span class="speisekarte__gericht-preis" aria-label="Preis folgt">–,– €</span>
+                </div>
+                <p class="speisekarte__gericht-beschreibung">Kurze Beschreibung des Angebots.</p>
+              </li>
+              <li class="speisekarte__gericht">
+                <div class="speisekarte__gericht-kopf">
+                  <span class="speisekarte__gericht-name">Getränk 3</span>
+                  <span class="speisekarte__gericht-preis" aria-label="Preis folgt">–,– €</span>
+                </div>
+                <p class="speisekarte__gericht-beschreibung">Kurze Beschreibung des Angebots.</p>
+              </li>
+              <li class="speisekarte__gericht">
+                <div class="speisekarte__gericht-kopf">
+                  <span class="speisekarte__gericht-name">Getränk 4</span>
+                  <span class="speisekarte__gericht-preis" aria-label="Preis folgt">–,– €</span>
+                </div>
+                <p class="speisekarte__gericht-beschreibung">Kurze Beschreibung des Angebots.</p>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Kategorie: Frühstück -->
+          <div class="speisekarte__kategorie" aria-labelledby="kategorie-fruehstueck">
+            <h3 class="speisekarte__kategorie-titel" id="kategorie-fruehstueck">Frühstück</h3>
+            <ul class="speisekarte__liste" role="list">
+              <li class="speisekarte__gericht">
+                <div class="speisekarte__gericht-kopf">
+                  <span class="speisekarte__gericht-name">Frühstück 1</span>
+                  <span class="speisekarte__gericht-preis" aria-label="Preis folgt">–,– €</span>
+                </div>
+                <p class="speisekarte__gericht-beschreibung">Kurze Beschreibung des Angebots.</p>
+              </li>
+              <li class="speisekarte__gericht">
+                <div class="speisekarte__gericht-kopf">
+                  <span class="speisekarte__gericht-name">Frühstück 2</span>
+                  <span class="speisekarte__gericht-preis" aria-label="Preis folgt">–,– €</span>
+                </div>
+                <p class="speisekarte__gericht-beschreibung">Kurze Beschreibung des Angebots.</p>
+              </li>
+              <li class="speisekarte__gericht">
+                <div class="speisekarte__gericht-kopf">
+                  <span class="speisekarte__gericht-name">Frühstück 3</span>
+                  <span class="speisekarte__gericht-preis" aria-label="Preis folgt">–,– €</span>
+                </div>
+                <p class="speisekarte__gericht-beschreibung">Kurze Beschreibung des Angebots.</p>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Kategorie: Mittagessen -->
+          <div class="speisekarte__kategorie" aria-labelledby="kategorie-mittagessen">
+            <h3 class="speisekarte__kategorie-titel" id="kategorie-mittagessen">Mittagessen</h3>
+            <ul class="speisekarte__liste" role="list">
+              <li class="speisekarte__gericht">
+                <div class="speisekarte__gericht-kopf">
+                  <span class="speisekarte__gericht-name">Mittagsgericht 1</span>
+                  <span class="speisekarte__gericht-preis" aria-label="Preis folgt">–,– €</span>
+                </div>
+                <p class="speisekarte__gericht-beschreibung">Kurze Beschreibung des Angebots.</p>
+              </li>
+              <li class="speisekarte__gericht">
+                <div class="speisekarte__gericht-kopf">
+                  <span class="speisekarte__gericht-name">Mittagsgericht 2</span>
+                  <span class="speisekarte__gericht-preis" aria-label="Preis folgt">–,– €</span>
+                </div>
+                <p class="speisekarte__gericht-beschreibung">Kurze Beschreibung des Angebots.</p>
+              </li>
+              <li class="speisekarte__gericht">
+                <div class="speisekarte__gericht-kopf">
+                  <span class="speisekarte__gericht-name">Mittagsgericht 3</span>
+                  <span class="speisekarte__gericht-preis" aria-label="Preis folgt">–,– €</span>
+                </div>
+                <p class="speisekarte__gericht-beschreibung">Kurze Beschreibung des Angebots.</p>
+              </li>
+              <li class="speisekarte__gericht">
+                <div class="speisekarte__gericht-kopf">
+                  <span class="speisekarte__gericht-name">Mittagsgericht 4</span>
+                  <span class="speisekarte__gericht-preis" aria-label="Preis folgt">–,– €</span>
+                </div>
+                <p class="speisekarte__gericht-beschreibung">Kurze Beschreibung des Angebots.</p>
+              </li>
+            </ul>
+          </div>
+
+        </div><!-- /.speisekarte__raster -->
+      </div>
+    </section>
+
+    <!-- Section: Atmosphäre -->
+    <section class="atmosphaere" id="atmosphaere" aria-labelledby="atmosphaere-titel">
+      <div class="atmosphaere__inhalt bereich">
+        <h2 class="abschnitts-titel abschnitts-titel--zentriert" id="atmosphaere-titel">Atmosphäre</h2>
+        <p class="atmosphaere__einleitung">Ein Ort zum Verweilen — warm, still und immer willkommen.</p>
+        <div class="atmosphaere__raster">
+          <div
+            class="atmosphaere__foto atmosphaere__foto--1"
+            role="img"
+            aria-label="Holztische und Vintage-Stühle im Morgenlicht"
+          ></div>
+          <div
+            class="atmosphaere__foto atmosphaere__foto--2"
+            role="img"
+            aria-label="Barista bereitet Cappuccino an der Siebträgermaschine zu"
+          ></div>
+          <div
+            class="atmosphaere__foto atmosphaere__foto--3"
+            role="img"
+            aria-label="Bücherregal neben dem Fenster mit Blick auf die Straße"
+          ></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section: Kontakt & Öffnungszeiten -->
+    <section class="kontakt" id="kontakt" aria-labelledby="kontakt-titel">
+      <div class="kontakt__inhalt bereich">
+        <h2 class="abschnitts-titel abschnitts-titel--zentriert" id="kontakt-titel">Kontakt &amp; Öffnungszeiten</h2>
+
+        <div class="kontakt__raster">
+
+          <div class="kontakt__info">
+            <h3 class="kontakt__zwischentitel">Adresse</h3>
+            <address class="kontakt__adresse">
+              Frau Krüger<br />
+              Kopenhagener Straße 37<br />
+              10437 Berlin
+            </address>
+
+            <h3 class="kontakt__zwischentitel">Öffnungszeiten März bis Oktober</h3>
+            <table class="kontakt__zeiten" aria-label="Öffnungszeiten März - Oktober">
+              <tbody>
+                <tr>
+                  <th scope="row" class="kontakt__zeiten-tag">Montag – Sonntag</th>
+                  <td class="kontakt__zeiten-uhrzeit">09:30 – 18:00 Uhr</td>
+                </tr>
+              </tbody>
+            </table>
+            <h3 class="kontakt__zwischentitel">Öffnungszeiten November bis Februar</h3>
+            <table class="kontakt__zeiten" aria-label="Öffnungszeiten November - Februar">
+              <tbody>
+                <tr>
+                  <th scope="row" class="kontakt__zeiten-tag">Montag – Sonntag</th>
+                  <td class="kontakt__zeiten-uhrzeit">10:00 – 17:00 Uhr</td>
+                </tr>
+              </tbody>
+            </table>
+            <h3 class="kontakt__zwischentitel">Folgt uns</h3>
+            <div class="kontakt__social">
+              <a
+                class="kontakt__social-link"
+                href="https://instagram.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Frau Krueger auf Instagram (öffnet in neuem Tab)"
+              >
+                <svg class="kontakt__social-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                  <circle cx="12" cy="12" r="4"/>
+                  <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/>
+                </svg>
+                Instagram
+              </a>
+              <a
+                class="kontakt__social-link"
+                href="https://facebook.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Frau Krueger auf Facebook (öffnet in neuem Tab)"
+              >
+                <svg class="kontakt__social-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+                </svg>
+                Facebook
+              </a>
+            </div>
+          </div>
+
+          <img
+            class="kontakt__karte"
+            src="Screenshot%20from%202026-06-07%2017-06-33.png"
+            alt="Kartenansicht: Frau Krueger, Musterstraße 12, Berlin"
+          />
+
+        </div><!-- /.kontakt__raster -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Section: Fußzeile -->
+  <footer class="fusszeile" role="contentinfo">
+    <div class="fusszeile__inhalt bereich">
+      <p class="fusszeile__copyright">&copy; 2026 Frau Krüger. Mit Liebe gemacht in Berlin.</p>
+      
+    </div>
+  </footer>
+
+</body>
+</html>

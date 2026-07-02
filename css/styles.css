@@ -1,0 +1,922 @@
+/* ==========================================================================
+   Frau Krueger – Café Website
+   styles.css
+   Architektur: Mobile-first, BEM (auf Deutsch), CSS Custom Properties
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. CSS Custom Properties (Design-Tokens)
+   -------------------------------------------------------------------------- */
+:root {
+  /* Farben */
+  --farbe-hintergrund:       #FFF8F0;   /* warmes Creme */
+  --farbe-primaer:           #F4A823;   /* Goldgelb */
+  --farbe-primaer-dunkel:    #D48E10;   /* Goldgelb abgedunkelt für Hover */
+  --farbe-akzent:            #E8F5E9;   /* weiches Salbeigrün */
+  --farbe-text:              #2C1A0E;   /* tiefes Espresso */
+  --farbe-text-schwach:      #8B6F47;   /* warmes Braun für Sekundärtext */
+  --farbe-rahmen:            #E8D8C4;   /* warmer heller Rahmen */
+  --farbe-weiss:             #FFFFFF;
+
+  /* Schrift */
+  --schrift-ueberschrift: 'Playfair Display', Georgia, serif;
+  --schrift-text:         'Inter', system-ui, -apple-system, sans-serif;
+
+  /* Schriftgrößen */
+  --groesse-xs:   0.75rem;   /*  12px */
+  --groesse-sm:   0.875rem;  /*  14px */
+  --groesse-md:   1rem;      /*  16px */
+  --groesse-lg:   1.125rem;  /*  18px */
+  --groesse-xl:   1.25rem;   /*  20px */
+  --groesse-2xl:  1.5rem;    /*  24px */
+  --groesse-3xl:  2rem;      /*  32px */
+  --groesse-4xl:  2.5rem;    /*  40px */
+  --groesse-5xl:  3.5rem;    /*  56px */
+
+  /* Abstände */
+  --abstand-xs:        0.25rem;
+  --abstand-sm:        0.5rem;
+  --abstand-md:        1rem;
+  --abstand-lg:        1.5rem;
+  --abstand-xl:        2rem;
+  --abstand-2xl:       3rem;
+  --abstand-abschnitt: 3rem;     /* Abschnittsabstand (mobil) */
+
+  /* Layout */
+  --max-breite:      1100px;
+  --nav-hoehe:       64px;
+  --radius-sm:       6px;
+  --radius-md:       12px;
+  --radius-lg:       20px;
+
+  /* Schatten */
+  --schatten-sm:   0 1px 3px rgba(44, 26, 14, 0.08);
+  --schatten-md:   0 4px 16px rgba(44, 26, 14, 0.12);
+  --schatten-lg:   0 8px 32px rgba(44, 26, 14, 0.16);
+
+  /* Übergänge */
+  --uebergang-schnell:   150ms ease;
+  --uebergang-normal:    250ms ease;
+  --uebergang-langsam:   400ms ease;
+}
+
+
+/* --------------------------------------------------------------------------
+   2. Reset & Basis
+   -------------------------------------------------------------------------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--schrift-text);
+  font-size: var(--groesse-md);
+  line-height: 1.7;
+  color: var(--farbe-text);
+  background-color: var(--farbe-hintergrund);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Fokusring: sichtbar für Tastaturnutzer, unsichtbar für Maus */
+:focus-visible {
+  outline: 3px solid var(--farbe-primaer);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+img,
+svg {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+address {
+  font-style: normal;
+}
+
+
+/* --------------------------------------------------------------------------
+   3. Hilfsstile
+   -------------------------------------------------------------------------- */
+.bereich {
+  width: 100%;
+  max-width: var(--max-breite);
+  margin-inline: auto;
+  padding-inline: var(--abstand-lg);
+}
+
+.abschnitts-titel {
+  font-family: var(--schrift-ueberschrift);
+  font-size: var(--groesse-3xl);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--farbe-text);
+  margin-bottom: var(--abstand-xl);
+}
+
+.abschnitts-titel--zentriert {
+  text-align: center;
+}
+
+/* Dekorativer Strich unter Abschnittstiteln */
+.abschnitts-titel::after {
+  content: '';
+  display: block;
+  width: 3rem;
+  height: 3px;
+  background-color: var(--farbe-primaer);
+  margin-top: var(--abstand-sm);
+  border-radius: 2px;
+}
+
+.abschnitts-titel--zentriert::after {
+  margin-inline: auto;
+}
+
+
+/* --------------------------------------------------------------------------
+   4. Knöpfe (Buttons)
+   -------------------------------------------------------------------------- */
+.knopf {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--abstand-sm);
+  padding: 0.75rem 1.75rem;
+  font-family: var(--schrift-text);
+  font-size: var(--groesse-md);
+  font-weight: 600;
+  border-radius: var(--radius-md);
+  border: 2px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+  transition:
+    transform var(--uebergang-normal),
+    box-shadow var(--uebergang-normal),
+    background-color var(--uebergang-normal),
+    color var(--uebergang-normal),
+    border-color var(--uebergang-normal);
+}
+
+.knopf:hover,
+.knopf:focus-visible {
+  transform: scale(1.03);
+  box-shadow: var(--schatten-md);
+}
+
+.knopf--primaer {
+  background-color: var(--farbe-primaer);
+  color: var(--farbe-text);
+  border-color: var(--farbe-primaer);
+}
+
+.knopf--primaer:hover,
+.knopf--primaer:focus-visible {
+  background-color: var(--farbe-primaer-dunkel);
+  border-color: var(--farbe-primaer-dunkel);
+}
+
+
+/* --------------------------------------------------------------------------
+   5. Navigation
+   -------------------------------------------------------------------------- */
+.navigation {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  height: var(--nav-hoehe);
+  background-color: var(--farbe-hintergrund);
+  border-bottom: 1px solid var(--farbe-rahmen);
+  transition: box-shadow var(--uebergang-normal);
+}
+
+/* JS fügt diese Klasse beim Scrollen hinzu */
+.navigation--gescrollt {
+  box-shadow: var(--schatten-md);
+}
+
+.navigation__inhalt {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--abstand-lg);
+}
+
+.navigation__logo {
+  font-family: var(--schrift-ueberschrift);
+  font-size: var(--groesse-2xl);
+  font-weight: 700;
+  color: var(--farbe-text);
+  letter-spacing: -0.02em;
+  flex-shrink: 0;
+  text-decoration: none;
+  transition: color var(--uebergang-schnell);
+}
+
+.navigation__logo:hover {
+  color: var(--farbe-primaer-dunkel);
+}
+
+/* Menü-Knopf (Hamburger) */
+.navigation__menue-knopf {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  padding: 6px;
+  background: none;
+  border: 2px solid transparent;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: border-color var(--uebergang-schnell);
+}
+
+.navigation__menue-knopf:focus-visible {
+  border-color: var(--farbe-primaer);
+  outline: none;
+}
+
+.navigation__strich {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: var(--farbe-text);
+  border-radius: 2px;
+  transition: transform var(--uebergang-normal), opacity var(--uebergang-normal);
+  transform-origin: center;
+}
+
+/* Menü-Knopf → X Animation */
+.navigation__menue-knopf[aria-expanded="true"] .navigation__strich:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.navigation__menue-knopf[aria-expanded="true"] .navigation__strich:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+.navigation__menue-knopf[aria-expanded="true"] .navigation__strich:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Mobiles Menü (standardmäßig versteckt) */
+.navigation__links {
+  position: fixed;
+  top: var(--nav-hoehe);
+  left: 0;
+  right: 0;
+  background-color: var(--farbe-hintergrund);
+  border-bottom: 1px solid var(--farbe-rahmen);
+  box-shadow: var(--schatten-md);
+  padding: var(--abstand-lg) var(--abstand-lg) var(--abstand-xl);
+  transform: translateY(-110%);
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    transform var(--uebergang-langsam),
+    opacity var(--uebergang-langsam);
+}
+
+.navigation__links.ist-geoeffnet {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.navigation__liste {
+  display: flex;
+  flex-direction: column;
+  gap: var(--abstand-md);
+}
+
+.navigation__link {
+  display: inline-block;
+  font-size: var(--groesse-xl);
+  font-weight: 500;
+  color: var(--farbe-text);
+  text-decoration: none;
+  padding-bottom: 2px;
+  position: relative;
+}
+
+/* Unterstrich-Hover-Effekt */
+.navigation__link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--farbe-primaer);
+  border-radius: 2px;
+  transition: width var(--uebergang-normal);
+}
+
+.navigation__link:hover::after,
+.navigation__link:focus-visible::after {
+  width: 100%;
+}
+
+.navigation__link:focus-visible {
+  outline: 3px solid var(--farbe-primaer);
+  outline-offset: 4px;
+}
+
+/* Desktop: Menü inline anzeigen, Menü-Knopf verstecken */
+@media (min-width: 768px) {
+  .navigation__menue-knopf {
+    display: none;
+  }
+
+  .navigation__links {
+    position: static;
+    transform: none;
+    opacity: 1;
+    pointer-events: auto;
+    background: none;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+  }
+
+  .navigation__liste {
+    flex-direction: row;
+    gap: var(--abstand-xl);
+  }
+
+  .navigation__link {
+    font-size: var(--groesse-md);
+  }
+}
+
+
+/* --------------------------------------------------------------------------
+   6. Einstieg (Hero)
+   -------------------------------------------------------------------------- */
+.einstieg {
+  background-color: var(--farbe-hintergrund);
+  padding-block: 5rem 4rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Dekorativer Hintergrundkreis */
+.einstieg::before {
+  content: '';
+  position: absolute;
+  top: -120px;
+  right: -120px;
+  width: 480px;
+  height: 480px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(244, 168, 35, 0.18) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.einstieg__inhalt {
+  position: relative;
+  z-index: 1;
+}
+
+.einstieg__vortext {
+  font-size: var(--groesse-sm);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--farbe-text-schwach);
+  margin-bottom: var(--abstand-sm);
+}
+
+.einstieg__titel {
+  font-family: var(--schrift-ueberschrift);
+  font-size: var(--groesse-4xl);
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--farbe-text);
+  margin-bottom: var(--abstand-md);
+}
+
+.einstieg__slogan {
+  font-size: var(--groesse-xl);
+  color: var(--farbe-text-schwach);
+  font-style: italic;
+  margin-bottom: var(--abstand-2xl);
+  max-width: 36ch;
+}
+
+@media (min-width: 768px) {
+  .einstieg {
+    padding-block: 7rem 6rem;
+  }
+
+  .einstieg__titel {
+    font-size: var(--groesse-5xl);
+  }
+
+  .einstieg__slogan {
+    font-size: var(--groesse-2xl);
+  }
+}
+
+
+/* --------------------------------------------------------------------------
+   7. Über uns
+   -------------------------------------------------------------------------- */
+.ueber-uns {
+  background-color: var(--farbe-akzent);
+  padding-block: var(--abstand-abschnitt);
+}
+
+.ueber-uns__inhalt {
+  display: grid;
+  gap: var(--abstand-2xl);
+  align-items: center;
+}
+
+.ueber-uns__text h2 {
+  margin-bottom: var(--abstand-lg);
+}
+
+.ueber-uns__absatz {
+  color: var(--farbe-text);
+  margin-bottom: var(--abstand-lg);
+  max-width: 65ch;
+}
+
+.ueber-uns__absatz:last-child {
+  margin-bottom: 0;
+}
+
+/* Gestalteter Platzhalter anstelle eines Fotos */
+.ueber-uns__bild {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(
+    135deg,
+    #D4B896 0%,
+    #C4A07A 30%,
+    #B8906A 60%,
+    #A07850 100%
+  );
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--schatten-lg);
+}
+
+/* Kaffeetassen-Illustration via CSS */
+.ueber-uns__bild::before {
+  content: '';
+  position: absolute;
+  bottom: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40%;
+  height: 28%;
+  border-radius: 0 0 50% 50% / 0 0 40% 40%;
+  background: rgba(255, 255, 255, 0.2);
+  border: 3px solid rgba(255, 255, 255, 0.4);
+  border-top: none;
+}
+
+.ueber-uns__bild::after {
+  content: '';
+  position: absolute;
+  bottom: 48%;
+  left: 50%;
+  transform: translateX(-40%);
+  width: 42%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 2px;
+}
+
+@media (min-width: 768px) {
+  .ueber-uns {
+    padding-block: 5rem;
+  }
+
+  .ueber-uns__inhalt {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 1024px) {
+  .ueber-uns__inhalt {
+    grid-template-columns: 3fr 2fr;
+    gap: 4rem;
+  }
+}
+
+
+/* --------------------------------------------------------------------------
+   8. Speisekarte
+   -------------------------------------------------------------------------- */
+.speisekarte {
+  background-color: var(--farbe-hintergrund);
+  padding-block: var(--abstand-abschnitt);
+}
+
+.speisekarte__inhalt > .abschnitts-titel {
+  margin-bottom: var(--abstand-md);
+}
+
+.speisekarte__einleitung {
+  text-align: center;
+  color: var(--farbe-text-schwach);
+  margin-bottom: var(--abstand-2xl);
+  font-size: var(--groesse-lg);
+}
+
+.speisekarte__raster {
+  display: grid;
+  gap: var(--abstand-xl);
+}
+
+.speisekarte__kategorie {
+  background-color: var(--farbe-weiss);
+  border: 1px solid var(--farbe-rahmen);
+  border-radius: var(--radius-md);
+  padding: var(--abstand-xl);
+  box-shadow: var(--schatten-sm);
+  transition: box-shadow var(--uebergang-normal), transform var(--uebergang-normal);
+}
+
+.speisekarte__kategorie:hover {
+  box-shadow: var(--schatten-md);
+  transform: translateY(-2px);
+}
+
+.speisekarte__kategorie-titel {
+  font-family: var(--schrift-ueberschrift);
+  font-size: var(--groesse-2xl);
+  font-weight: 600;
+  color: var(--farbe-text);
+  padding-bottom: var(--abstand-md);
+  margin-bottom: var(--abstand-lg);
+  border-bottom: 2px solid var(--farbe-primaer);
+}
+
+.speisekarte__liste {
+  display: flex;
+  flex-direction: column;
+  gap: var(--abstand-lg);
+}
+
+.speisekarte__gericht {
+  padding-bottom: var(--abstand-lg);
+  border-bottom: 1px solid var(--farbe-rahmen);
+}
+
+.speisekarte__gericht:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.speisekarte__gericht-kopf {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--abstand-md);
+  margin-bottom: var(--abstand-xs);
+}
+
+.speisekarte__gericht-name {
+  font-weight: 600;
+  font-size: var(--groesse-lg);
+  color: var(--farbe-text);
+}
+
+.speisekarte__gericht-preis {
+  font-weight: 700;
+  font-size: var(--groesse-lg);
+  color: var(--farbe-primaer-dunkel);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.speisekarte__gericht-beschreibung {
+  font-size: var(--groesse-sm);
+  color: var(--farbe-text-schwach);
+  line-height: 1.6;
+}
+
+@media (min-width: 768px) {
+  .speisekarte {
+    padding-block: 5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .speisekarte__raster {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+
+/* --------------------------------------------------------------------------
+   9. Atmosphäre
+   -------------------------------------------------------------------------- */
+.atmosphaere {
+  background-color: var(--farbe-akzent);
+  padding-block: var(--abstand-abschnitt);
+}
+
+.atmosphaere__einleitung {
+  text-align: center;
+  color: var(--farbe-text-schwach);
+  margin-bottom: var(--abstand-2xl);
+  margin-top: calc(-1 * var(--abstand-lg));
+  font-size: var(--groesse-lg);
+  font-style: italic;
+}
+
+.atmosphaere__raster {
+  display: grid;
+  gap: var(--abstand-lg);
+}
+
+.atmosphaere__foto {
+  aspect-ratio: 1 / 1;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--schatten-md);
+  transition: transform var(--uebergang-langsam), box-shadow var(--uebergang-langsam);
+}
+
+.atmosphaere__foto:hover {
+  transform: scale(1.02);
+  box-shadow: var(--schatten-lg);
+}
+
+/* Farbgebung der einzelnen Foto-Platzhalter */
+.atmosphaere__foto--1 {
+  background: linear-gradient(145deg, #C8A882 0%, #A07850 50%, #8B6440 100%);
+}
+
+.atmosphaere__foto--2 {
+  background: linear-gradient(145deg, #6B4F3A 0%, #4A3020 50%, #3A2010 100%);
+}
+
+.atmosphaere__foto--3 {
+  background: linear-gradient(145deg, #8FA87A 0%, #6B8A58 50%, #506840 100%);
+}
+
+/* Feines Muster als Textur-Andeutung */
+.atmosphaere__foto::after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-image:
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 12px,
+      rgba(255,255,255,0.03) 12px,
+      rgba(255,255,255,0.03) 14px
+    );
+}
+
+@media (min-width: 768px) {
+  .atmosphaere {
+    padding-block: 5rem;
+  }
+
+  .atmosphaere__raster {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+
+/* --------------------------------------------------------------------------
+   10. Kontakt & Öffnungszeiten
+   -------------------------------------------------------------------------- */
+.kontakt {
+  background-color: var(--farbe-hintergrund);
+  padding-block: var(--abstand-abschnitt);
+}
+
+.kontakt__raster {
+  display: grid;
+  gap: var(--abstand-2xl);
+  align-items: start;
+}
+
+.kontakt__zwischentitel {
+  font-family: var(--schrift-ueberschrift);
+  font-size: var(--groesse-xl);
+  font-weight: 600;
+  color: var(--farbe-text);
+  margin-bottom: var(--abstand-sm);
+  margin-top: var(--abstand-xl);
+}
+
+.kontakt__zwischentitel:first-child {
+  margin-top: 0;
+}
+
+.kontakt__adresse {
+  color: var(--farbe-text-schwach);
+  line-height: 1.8;
+  font-size: var(--groesse-lg);
+}
+
+/* Tabelle: Öffnungszeiten */
+.kontakt__zeiten {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--groesse-lg);
+}
+
+.kontakt__zeiten th,
+.kontakt__zeiten td {
+  padding: var(--abstand-sm) var(--abstand-md) var(--abstand-sm) 0;
+  text-align: left;
+  border-bottom: 1px solid var(--farbe-rahmen);
+}
+
+.kontakt__zeiten th:last-child,
+.kontakt__zeiten td:last-child {
+  padding-right: 0;
+}
+
+.kontakt__zeiten-tag {
+  color: var(--farbe-text);
+  font-weight: 500;
+}
+
+.kontakt__zeiten-uhrzeit {
+  color: var(--farbe-text-schwach);
+  text-align: right;
+}
+
+/* Social-Media-Links */
+.kontakt__social {
+  display: flex;
+  gap: var(--abstand-lg);
+  flex-wrap: wrap;
+  margin-top: var(--abstand-sm);
+}
+
+.kontakt__social-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--abstand-sm);
+  font-weight: 600;
+  font-size: var(--groesse-md);
+  color: var(--farbe-text);
+  padding: var(--abstand-sm) var(--abstand-md);
+  border: 2px solid var(--farbe-rahmen);
+  border-radius: var(--radius-md);
+  transition:
+    border-color var(--uebergang-schnell),
+    color var(--uebergang-schnell),
+    background-color var(--uebergang-schnell),
+    transform var(--uebergang-schnell);
+}
+
+.kontakt__social-link:hover,
+.kontakt__social-link:focus-visible {
+  border-color: var(--farbe-primaer);
+  color: var(--farbe-primaer-dunkel);
+  background-color: rgba(244, 168, 35, 0.08);
+  transform: translateY(-1px);
+}
+
+.kontakt__social-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+/* Karte (Bild) */
+.kontakt__karte {
+  display: block;
+  width: 100%;
+  min-height: 280px;
+  border-radius: var(--radius-md);
+  box-shadow: var(--schatten-sm);
+  border: 1px solid var(--farbe-rahmen);
+  object-fit: cover;
+}
+
+@media (min-width: 768px) {
+  .kontakt {
+    padding-block: 5rem;
+  }
+
+  .kontakt__raster {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  img.kontakt__karte {
+    min-height: 360px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .kontakt__raster {
+    grid-template-columns: 2fr 3fr;
+    gap: 4rem;
+  }
+}
+
+
+/* --------------------------------------------------------------------------
+   11. Fußzeile
+   -------------------------------------------------------------------------- */
+.fusszeile {
+  background-color: var(--farbe-text);
+  color: rgba(255, 248, 240, 0.8);
+  padding-block: var(--abstand-xl);
+}
+
+.fusszeile__inhalt {
+  display: flex;
+  flex-direction: column;
+  gap: var(--abstand-md);
+  align-items: center;
+  text-align: center;
+}
+
+.fusszeile__copyright {
+  font-size: var(--groesse-sm);
+}
+
+@media (min-width: 768px) {
+  .fusszeile__inhalt {
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+  }
+}
+
+
+/* --------------------------------------------------------------------------
+   12. Abstandsskalierung (größere Bildschirme)
+   -------------------------------------------------------------------------- */
+@media (min-width: 768px) {
+  :root {
+    --abstand-abschnitt: 5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --abstand-abschnitt: 6.25rem; /* ~100px */
+  }
+
+  .einstieg {
+    padding-block: 9rem 7rem;
+  }
+}
+
+
+/* --------------------------------------------------------------------------
+   13. Druckstile
+   -------------------------------------------------------------------------- */
+@media print {
+  .navigation,
+  .einstieg::before,
+  .kontakt__karte,
+  .fusszeile__nach-oben {
+    display: none;
+  }
+
+  body {
+    font-size: 12pt;
+    color: #000;
+    background: #fff;
+  }
+
+  .einstieg,
+  .ueber-uns,
+  .speisekarte,
+  .atmosphaere,
+  .kontakt {
+    page-break-inside: avoid;
+  }
+}
